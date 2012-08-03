@@ -1,1 +1,1 @@
-module.exports = require('./lib/uptime')
+module.exports = require('./lib/paramedic')
