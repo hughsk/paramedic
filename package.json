@@ -1,0 +1,31 @@
+{
+  "name": "paramedic",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No tests at the moment! Sorry.\" && exit 1"
+  },
+  "homepage": "http://github.com/hughsk/paramedic",
+  "license": "BSD",
+  "description": "A simple health monitor server for running health checks periodically.",
+  "dependencies": {
+    "underscore": "~1.3.3",
+    "handlebars": "~1.0.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hughsk/paramedic.git"
+  },
+  "keywords": [
+    "health",
+    "test",
+    "status",
+    "server"
+  ],
+  "author": {
+    "name": "Hugh Kennedy",
+    "email": "hughskennedy@gmail.com",
+    "url": "http://hughskennedy.com/"
+  }
+}
