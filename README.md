@@ -5,7 +5,7 @@ A simple health monitor server for running health checks periodically.
 ## Installation
 
 ``` bash
-npm install paramadic
+npm install paramedic
 ```
 
 ## Usage
@@ -37,7 +37,7 @@ medic.test('Google UK', function(done, warn) {
 }).interval(21000);
 ```
 
-**Step 3:** Start up your tests! `start()` returns a request callback for you
+**Step 3:** Start up the server! `start()` returns a request callback for you
 to easily plug into an HTTP server, or as an Express route.
 
 ``` javascript
@@ -47,12 +47,14 @@ var http = require('http')
 http.createServer(server).listen(8080);
 ```
 
-After that, you should have a basic server running on port 8080.
+After that, your server should be running on port 8080, similar to this:
+
+![Screenshot](https://github.com/hughsk/paramedic/raw/master/examples/http-polling.png)
 
 ### Collections
 
 You can create "collections" of tests too. These function as reusable
-test templates, which can then be loaded using the collection's `add` method.
+templates, which can then be loaded using the collection's `add` method.
 
 ``` javascript
 medic.collection('Google Queries', function(data) {
