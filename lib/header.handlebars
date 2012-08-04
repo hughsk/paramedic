@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<meta name="viewport" content="width=540">
+
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300|Raleway:100' rel='stylesheet' type='text/css'>
+
+		<style type="text/css">
+			/* html5doctor.com Reset Stylesheet v1.6.1 Last Updated: 2010-09-17 Author: Richard Clark - http://richclarkdesign.com Twitter: @rich_clark */ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin:0; padding:0; border:0; outline:0; font-size:100%; vertical-align:baseline; background:transparent; } body { line-height:1; } article,aside,details,figcaption,figure, footer,header,hgroup,menu,nav,section { display:block; } nav ul { list-style:none; } blockquote, q { quotes:none; } blockquote:before, blockquote:after, q:before, q:after { content:''; content:none; } a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; } /* change colours to suit your needs */ ins { background-color:#ff9; color:#000; text-decoration:none; } /* change colours to suit your needs */ mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; } del { text-decoration: line-through; } abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; } table { border-collapse:collapse; border-spacing:0; } /* change border colour to suit your needs */ hr { display:block; height:1px; border:0; border-top:1px solid #cccccc; margin:1em 0; padding:0; } input, select { vertical-align:middle; }
+
+			body {
+				font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+				color:#666; font-weight:300;
+				background:#fff;
+			}
+
+			h1,
+			.test-stats,
+			.test-error h2 {
+				font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+				font-weight:100;
+			}
+
+			/**
+			 * General Layout
+			 */
+			#header {
+				margin:60px 60px 0 60px;
+				padding-bottom:20px;
+				color:white;
+				border-bottom:1px dotted #aaa;
+			}
+
+			#header h1 {
+				font-size:36px;
+				color:#777;
+			}
+
+			.status-wrap {
+				padding:60px;
+				padding-top:20px;
+			}
+
+			.test-wrap {
+				padding:60px;
+				padding-top:0;
+				overflow:hidden;
+			}
+
+			.back-arrow {
+				position:absolute;
+				top:20px;
+				height:20px; line-height:20px;
+				left:60px;
+			}
+
+			.back-arrow a {
+				text-decoration: none;
+				color:#aaa;
+				font-size:12px;
+			}
+
+			.back-arrow a:hover {
+				color:#202747;
+			}
+
+			.back-arrow-arrow {
+				display:inline-block;
+				width:20px;
+				margin-left:-20px;
+			}
+
+			/**
+			 * Overview Page
+			 */
+			.status-cell {
+				margin:10px;
+				width:120px;
+				float:left;
+				text-align:center;
+			}
+
+			.status-node {
+				display:table;
+				
+				width:100px; height:100px;
+				border-radius: 120px;
+				
+				margin:0 auto;
+				padding:10px;
+				line-height:1.4em;
+				
+				background-color:#aaa;
+				text-transform:uppercase;
+				font-size:10px;
+
+				cursor:pointer;
+				opacity:0.8;
+
+				text-shadow:0px 1px 2px rgba(0, 0, 0, 0.55);
+				box-shadow:0px 1px 5px rgba(0, 0, 0, 0.45) inset;
+			}
+
+			.status-node:hover {
+				opacity:1;
+			}
+
+			.status-cell .status-title,
+			.status-cell .status-stats {
+				height:100px; width:100px;
+
+				color:#fff; font-weight:bold;
+				text-align:center;
+				vertical-align:middle;
+
+				list-style-type:none;
+			}
+
+			.status-cell .status-title,
+			.status-cell:hover .status-stats {
+				display:table-cell;
+			}
+
+			.status-cell .status-stats,
+			.status-cell:hover .status-title {
+				display:none;
+			}
+
+			.status-node-stable,
+			.test-statusbar-pass {
+				background-color:#9FCF09;
+			}
+			.status-node-err,
+			.test-statusbar-err  {
+				background-color:#D41352;
+			}
+			.status-node-warn,
+			.test-statusbar-warn {
+				background-color:#E8A20A;
+			}
+
+			/**
+			 * Individual Test Pages
+			 */
+			.test-statusbar {
+				position:relative;
+				list-style-type:none;
+				width:100%;
+				height:40px;
+				color:white;
+				font-size:12px;
+				text-transform: uppercase;
+				font-weight:normal;
+
+				text-shadow:0px 1px 2px rgba(0, 0, 0, 0.55);
+
+				border-bottom:1px dotted #888;
+			}
+
+			.test-statusbar .test-statusbar-pass,
+			.test-statusbar .test-statusbar-warn,
+			.test-statusbar .test-statusbar-err {
+				text-align:center;
+				float:left;
+				overflow:hidden;
+				line-height:40px;
+				height:40px;
+				display:inline-block;
+
+				box-shadow: 0px 4px 4px -3px rgba(0, 0, 0, 0.4) inset;
+			}
+
+			.header-test-status {
+				float:right;
+			}
+			.header-test-status.status-stable { color:#9FCF09; }
+			.header-test-status.status-err    { color:#D41352; }
+			.header-test-status.status-warn   { color:#E8A20A; }
+			
+			.header-test-label {
+				float:left;
+			}
+
+			.test-stats {
+				font-size:18px;
+				margin:20px 0;
+				position:relative;
+			}
+
+			.test-stats-left,
+			.test-stats-right {
+				width:50%;
+				line-height:1.5em;
+			}
+
+			.test-stats-left {
+				text-align: left;
+				float:left;
+			}
+
+			.test-stats-right {
+				text-align:right;
+				float:right;
+			}
+
+			.test-error {
+				border-top:1px dotted #aaa;
+				position:relative;
+				padding:10px;
+			}
+
+			.test-error h2 {
+				font-size:14px;
+				font-weight:300;
+				text-align:right;
+				float:right;
+				width:22%;
+				margin-left:2%;
+				height:100%;
+			}
+			
+			.test-error pre {
+				float:left;
+				width:75%;
+				font-family:Monaco, monospace;
+				font-weight:300;
+				font-size:12px;
+				line-height:1.4em;
+				white-space: pre-wrap;
+				color:#888;
+			}
+
+			/* Clearfix - http://h5bp.com/q */
+			.cf:before,
+			.cf:after { content: " "; display: table; }
+			.cf:after { clear: both; }
+			.cf { *zoom: 1; }
+		</style>
+	</head>
+	<body>

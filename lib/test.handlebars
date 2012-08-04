@@ -1,0 +1,45 @@
+{{> header}}
+		<nav class="back-arrow">
+			<a href="/"><span class="back-arrow-arrow">&larr; </span>Back</a>
+		</nav>
+		<header id="header">
+			<h1 class="cf">
+				<span class="header-test-status status-{{ test.status.shortcode }}">{{ test.status.label }}</span>
+				<span class="header-test-name">{{ test.name }}</span>
+			</h1>
+		</header>
+
+		<div class="test-wrap">
+			<ul class="test-statusbar cf">
+				<li class="test-statusbar-pass" style="width:{{percentage test.passCount test.totalCount}}%">
+					{{test.passCount}} Passes
+				</li>
+				<li class="test-statusbar-warn" style="width:{{percentage test.warnCount test.totalCount}}%">
+					{{test.warnCount}} Warnings
+				</li>
+				<li class="test-statusbar-err" style="width:{{percentage test.errorCount test.totalCount}}%">
+					{{test.errorCount}} Errors
+				</li>
+			</ul>
+
+			<aside class="test-stats cf">
+				<div class="test-stats-left">
+					<p>Last Test: {{fromnow test.lastTestTime}}</p>
+					<p>Next Test: {{intime test.lastTestTime test.options.interval "milliseconds"}}</p>
+				</div>
+				<div class="test-stats-right">
+					<p>Last Test: {{rounded test.lastTestLength}}ms</p>
+					<p>Average Test: {{rounded test.avgTestLength}}ms</p>
+				</div>
+			</aside>
+
+			<div class="test-errors-list">
+				{{#each test.errors}}
+					<div class="test-error cf">
+						<h2>{{fromnow time}}</h2>
+						<pre>{{err.message}}</pre>
+					</div>
+				{{/each}}
+			</div>
+		</div>
+{{> footer}}
