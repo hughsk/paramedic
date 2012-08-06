@@ -76,3 +76,5 @@ The server page will update accordingly as tests fail and recover,
 but the server also emits `error`, `warn`, `pass` and `recover` events.
 
 This can be used, for example, to send notifications or automate a recovery.
+
+`ready` is emitted when the server has started testing.
