@@ -1,5 +1,7 @@
 # Paramedic
 
+**Deprecated: paramedic is very old and no longer maintained.**
+
 A simple health monitor server for running health checks periodically.
 
 ## Installation
